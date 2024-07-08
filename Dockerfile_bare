@@ -1,0 +1,32 @@
+FROM ubuntu:22.04
+
+# Platform.
+ARG PLATFORM="Linux-x86_64"
+# ARG PLATFORM="MacOSX-arm64"
+# ARG PLATFORM="Linux-ppc64le"
+
+# Shell. 
+ENV SHELL=/bin/bash
+ENV BASH_ENV=~/.bashrc
+SHELL ["/bin/bash", "-c"]
+
+# Working directory.
+RUN mkdir -p /app
+WORKDIR /app
+
+# Install basics. 
+RUN apt update && apt install -y wget build-essential git
+
+# For slient installation.  
+RUN wget -O miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-${PLATFORM}.sh \
+&& chmod u+x ./miniconda.sh \
+&& ./miniconda.sh -b -p $HOME/miniconda \
+&& rm -rf ./miniconda.sh \
+&& echo "$HOME/miniconda/bin/conda init" > ~/.bashrc
+
+# Configure conda-forge and mamba.
+RUN source ~/.bashrc \ 
+&& conda config --add channels conda-forge && conda config --set channel_priority strict \
+&& conda install -y mamba 
+
+CMD ["/bin/bash"]

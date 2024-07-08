@@ -1,0 +1,87 @@
+FROM krishnaa42342/mamba:bare 
+
+
+# Platform.
+ARG PLATFORM="Linux-x86_64"
+# ARG PLATFORM="MacOSX-arm64"
+# ARG PLATFORM="Linux-ppc64le"
+
+# Shell. 
+ENV SHELL=/bin/bash
+ENV BASH_ENV=~/.bashrc
+SHELL ["/bin/bash", "-c"]
+
+# Working directory.
+RUN mkdir -p /app
+WORKDIR /app
+
+# Install packages. 
+
+RUN source ~/.bashrc \
+&& mamba install -y numpy
+
+RUN source ~/.bashrc \
+&& mamba install -y cupy
+
+RUN source ~/.bashrc \
+&& mamba install -y mpich
+
+RUN source ~/.bashrc \
+&& mamba install -y mpi4py
+
+RUN source ~/.bashrc \
+&& mamba install -y pandas
+
+RUN source ~/.bashrc \
+&& mamba install -y scipy
+
+RUN source ~/.bashrc \
+&& mamba install -y sympy
+
+RUN source ~/.bashrc \
+&& mamba install -y scikit-learn
+
+RUN source ~/.bashrc \
+&& mamba install -y h5py
+
+RUN source ~/.bashrc \
+&& mamba install -y petsc petsc4py slepc slepc4py 
+
+RUN source ~/.bashrc \
+&& mamba install -y matplotlib
+
+RUN source ~/.bashrc \
+&& mamba install -y seaborn
+
+RUN source ~/.bashrc \
+&& pip3 install -q pyvista 
+
+RUN source ~/.bashrc \
+&& mamba install -y fenics-dolfinx
+
+RUN source ~/.bashrc \
+&& mamba install -y jupyterlab
+
+RUN source ~/.bashrc \
+&& mamba install -y ase 
+
+RUN source ~/.bashrc \
+&& mamba install -y gpaw 
+
+RUN source ~/.bashrc \
+&& mamba install -y pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
+
+RUN source ~/.bashrc \
+&& pip3 install -q torch_geometric pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv \
+-f https://data.pyg.org/whl/torch-2.3.0+cu121.html
+
+RUN source ~/.bashrc \
+&& pip3 install -q e3nn 
+
+RUN source ~/.bashrc \
+&& mamba install -y pymatgen
+
+RUN source ~/.bashrc \
+&& pip3 install -q mp_api
+
+CMD ["/bin/bash"]
