@@ -1,0 +1,85 @@
+services:
+  mamba-bare-linux-amd64:
+    image: krishnaa42342/mamba:bare
+    build:
+      context: ./
+      dockerfile: ./Dockerfile_bare
+      args:
+        PLATFORM: Linux-x86_64
+      platforms:
+        - linux/amd64
+      # no_cache: true
+  mamba-bare-linux-arm64:
+    image: krishnaa42342/mamba:bare
+    build:
+      context: ./
+      dockerfile: ./Dockerfile_bare
+      args:
+        PLATFORM: Linux-aarch64
+      platforms:
+        - linux/arm64
+  mamba-bare-linux-ppc64le:
+    image: krishnaa42342/mamba:bare
+    build:
+      context: ./
+      dockerfile: ./Dockerfile_bare
+      args:
+        PLATFORM: Linux-ppc64le
+      platforms:
+        - linux/ppc64le
+  mamba-mpich-linux-amd64:
+    image: krishnaa42342/mamba:mpich
+    build:
+      context: ./
+      dockerfile: ./Dockerfile_mpich
+      args:
+        PLATFORM: Linux-x86_64
+      platforms:
+        - linux/amd64
+  mamba-mpich-linux-arm64:
+    image: krishnaa42342/mamba:mpich
+    build:
+      context: ./
+      dockerfile: ./Dockerfile_mpich
+      args:
+        PLATFORM: Linux-aarch64
+      platforms:
+        - linux/arm64
+  mamba-mpich-linux-ppc64le:
+    image: krishnaa42342/mamba:mpich
+    build:
+      context: ./
+      dockerfile: ./Dockerfile_mpich
+      args:
+        PLATFORM: Linux-ppc64le
+      platforms:
+        - linux/ppc64le
+  mamba-cuda-linux-amd64:
+    image: krishnaa42342/mamba:cuda
+    build:
+      context: ./
+      dockerfile: ./Dockerfile_cuda
+      args:
+        PLATFORM: Linux-x86_64
+      platforms:
+        - linux/amd64
+  mamba-cuda-linux-arm64:
+    image: krishnaa42342/mamba:cuda
+    build:
+      context: ./
+      dockerfile: ./Dockerfile_cuda
+      args:
+        PLATFORM: Linux-aarch64
+      platforms:
+        - linux/arm64
+  mamba-cuda-linux-ppc64le:
+    image: krishnaa42342/mamba:cuda
+    build:
+      context: ./
+      dockerfile: ./Dockerfile_cuda
+      args:
+        PLATFORM: Linux-ppc64le
+      platforms:
+        - linux/ppc64le
+  
+        

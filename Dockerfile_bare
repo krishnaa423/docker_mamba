@@ -22,11 +22,16 @@ RUN wget -O miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-$
 && chmod u+x ./miniconda.sh \
 && ./miniconda.sh -b -p $HOME/miniconda \
 && rm -rf ./miniconda.sh \
-&& echo "$HOME/miniconda/bin/conda init" > ~/.bashrc
+&& echo "" > ~/.bashrc \
+&& $HOME/miniconda/bin/conda init
 
 # Configure conda-forge and mamba.
 RUN source ~/.bashrc \ 
 && conda config --add channels conda-forge && conda config --set channel_priority strict \
 && conda install -y mamba 
+
+
+# Finally set the working directory to home directory. 
+WORKDIR /app
 
 CMD ["/bin/bash"]

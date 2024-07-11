@@ -5,6 +5,7 @@ FROM krishnaa42342/mamba:bare
 ARG PLATFORM="Linux-x86_64"
 # ARG PLATFORM="MacOSX-arm64"
 # ARG PLATFORM="Linux-ppc64le"
+# Cuda version used is 12.1.
 
 # Shell. 
 ENV SHELL=/bin/bash
@@ -16,6 +17,8 @@ RUN mkdir -p /app
 WORKDIR /app
 
 # Install packages. 
+# packages: numpy, cupy, mpich, mpi4py, pandas, scipy, sympy, scikit-learn, h5py, petsc, petsc4py, slepc, slepc4py
+# matplotlib, seaborn, qt, pyvista, pyvistaqt, fenics-dolfinx, jupyterlab, ase, gpaw, pytorch, pytorch_geometric, e3nn, pymatgen, mp_api. 
 
 RUN source ~/.bashrc \
 && mamba install -y numpy
@@ -54,7 +57,13 @@ RUN source ~/.bashrc \
 && mamba install -y seaborn
 
 RUN source ~/.bashrc \
+&& mamba install -y qt
+
+RUN source ~/.bashrc \
 && pip3 install -q pyvista 
+
+RUN source ~/.bashrc \
+&& pip3 install -q pyvistaqt
 
 RUN source ~/.bashrc \
 && mamba install -y fenics-dolfinx
@@ -83,5 +92,8 @@ RUN source ~/.bashrc \
 
 RUN source ~/.bashrc \
 && pip3 install -q mp_api
+
+# Finally set the working directory to home directory. 
+WORKDIR /app
 
 CMD ["/bin/bash"]

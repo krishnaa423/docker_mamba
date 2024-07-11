@@ -1,3 +1,4 @@
 #!/bin/bash
 
-docker buildx build --file=Dockerfile_cuda --tag=krishnaa42342/mamba:cuda --no-cache ./
+docker compose build mamba-cuda-linux-amd64
+# docker compose push mamba-cuda-linux-amd64

@@ -16,6 +16,8 @@ RUN mkdir -p /app
 WORKDIR /app
 
 # Install packages. 
+# packages: numpy, mpich, mpi4py, pandas, scipy, sympy, scikit-learn, h5py, petsc, petsc4py, slepc, slepc4py
+# matplotlib, seaborn, pyqt, pyvista, pyvistaqt, fenics-dolfinx, jupyterlab, ase, gpaw, pytorch, pytorch_geometric, e3nn, pymatgen, mp_api (pip).
 
 RUN source ~/.bashrc \
 && mamba install -y numpy
@@ -51,7 +53,13 @@ RUN source ~/.bashrc \
 && mamba install -y seaborn
 
 RUN source ~/.bashrc \
+&& mamba install -y pyqt
+
+RUN source ~/.bashrc \
 && pip3 install -q pyvista 
+
+RUN source ~/.bashrc \
+&& pip3 install -q pyvistaqt 
 
 RUN source ~/.bashrc \
 && mamba install -y fenics-dolfinx
@@ -79,5 +87,8 @@ RUN source ~/.bashrc \
 
 RUN source ~/.bashrc \
 && pip3 install -q mp_api
+
+# Finally set the working directory to home directory. 
+WORKDIR /app
 
 CMD ["/bin/bash"]

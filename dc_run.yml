@@ -1,0 +1,52 @@
+services:
+  mamba-bare-linux-amd64:
+    image: krishnaa42342/mamba:bare
+    container_name: mamba-bare
+    network_mode: "host"
+    volumes:
+      - "./:/scratch"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: ["gpu"]
+              count: all
+              driver: nvidia
+    environment:
+      DISPLAY: $DISPLAY
+    stdin_open: true
+    tty: true
+  mamba-mpich-linux-amd64:
+    image: krishnaa42342/mamba:mpich
+    container_name: mamba-mpich
+    network_mode: "host"
+    volumes:
+      - "./:/scratch"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: ["gpu"]
+              count: all
+              driver: nvidia
+    environment:
+      DISPLAY: $DISPLAY
+    stdin_open: true
+    tty: true
+  mamba-cuda-linux-amd64:
+    image: krishnaa42342/mamba:cuda
+    container_name: mamba-cuda
+    network_mode: "host"
+    volumes:
+      - "./:/scratch"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: ["gpu"]
+              count: all
+              driver: nvidia
+    environment:
+      DISPLAY: $DISPLAY
+    stdin_open: true
+    tty: true
