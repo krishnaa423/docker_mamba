@@ -81,6 +81,12 @@ RUN source ~/.bashrc \
 && mamba install -y pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
 
 RUN source ~/.bashrc \
+&& mamba install -y tensorboard
+
+RUN source ~/.bashrc \
+&& pip3 install -q keras
+
+RUN source ~/.bashrc \
 && pip3 install -q torch_geometric pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv \
 -f https://data.pyg.org/whl/torch-2.3.0+cu121.html
 
@@ -92,6 +98,10 @@ RUN source ~/.bashrc \
 
 RUN source ~/.bashrc \
 && pip3 install -q mp_api
+
+# Package development. 
+RUN source ~/.bashrc \
+&& pip3 install -q twine
 
 # Finally set the working directory to home directory. 
 WORKDIR /app

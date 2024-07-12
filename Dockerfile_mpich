@@ -77,6 +77,12 @@ RUN source ~/.bashrc \
 && mamba install -y pytorch torchvision torchaudio cpuonly -c pytorch
 
 RUN source ~/.bashrc \
+&& mamba install -y tensorboard
+
+RUN source ~/.bashrc \
+&& pip3 install -q keras
+
+RUN source ~/.bashrc \
 && pip3 install -q torch_geometric
 
 RUN source ~/.bashrc \
@@ -87,6 +93,10 @@ RUN source ~/.bashrc \
 
 RUN source ~/.bashrc \
 && pip3 install -q mp_api
+
+# Package development. 
+RUN source ~/.bashrc \
+&& pip3 install -q twine
 
 # Finally set the working directory to home directory. 
 WORKDIR /app
