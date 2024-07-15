@@ -94,6 +94,9 @@ RUN source ~/.bashrc \
 RUN source ~/.bashrc \
 && pip3 install -q mp_api
 
+RUN source ~/.bashrc \
+&& pip3 install -q astropy
+
 RUN apt-get update \
 && apt-get install -y libgl1-mesa-glx
 
