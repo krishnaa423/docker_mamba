@@ -99,6 +99,9 @@ RUN source ~/.bashrc \
 RUN source ~/.bashrc \
 && pip3 install -q mp_api
 
+RUN apt-get update \
+&& apt-get install -y libgl1-mesa-glx
+
 # Package development. 
 RUN source ~/.bashrc \
 && pip3 install -q twine
